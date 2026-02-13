@@ -1,0 +1,20 @@
+name: DynamicStockMarket
+version: 1.2
+author: 𝕃ʏи𝕏
+main: com.itz_arnavfalke197.dynamicstockmarket.DynamicStockMarket
+api-version: 1.21
+depend: [Vault]
+commands:
+  stocks:
+    description: Stock market commands
+    usage: /stocks <buy|sell|info|market|portfolio> [args]
+    permission: dsm.user
+  dsm:
+    description: Main command for DynamicStockMarket
+    usage: /dsm <reload>
+    permission: dsm.admin
+permissions:
+  dsm.user:
+    default: true
+  dsm.admin:
+    default: op

@@ -1,0 +1,68 @@
+price-update-interval: 300 #300 seconds = 5 minutes
+tax-rate: 0.05
+event-chance: 0.05
+dividend-interval: 3600 #3600 seconds = 1 hour
+dividend-yield: 0.05
+market-events:
+  bull-run:
+    message: "&a&lMARKET EVENT: &eBull Market! All stocks are rising!"
+    multiplier: 1.5
+  market-crash:
+    message: "&c&lMARKET EVENT: &4Market Crash! Prices are plummeting!"
+    multiplier: 0.7
+  tech-boom:
+    message: "&b&lMARKET EVENT: &fTech sector booming!"
+    multiplier: 1.1
+starting-stocks:
+  - symbol: AAPL
+    name: Apple Inc.
+    price: 150.0
+    volatility: 5.0
+  - symbol: GOOG
+    name: Alphabet Inc.
+    price: 2800.0
+    volatility: 10.0
+  - symbol: MSFT
+    name: Microsoft Corp.
+    price: 300.0
+    volatility: 7.0
+  - symbol: TSLA
+    name: Tesla Inc.
+    price: 250.0
+    volatility: 15.0
+  - symbol: AMZN
+    name: Amazon.com Inc.
+    price: 3500.0
+    volatility: 12.0
+  - symbol: NVDA
+    name: NVIDIA Corp.
+    price: 800.0
+    volatility: 20.0
+  - symbol: META
+    name: Meta Platforms Inc.
+    price: 500.0
+    volatility: 8.0
+  - symbol: NFLX
+    name: Netflix Inc.
+    price: 600.0
+    volatility: 9.0
+  - symbol: AMD
+    name: Advanced Micro Devices Inc.
+    price: 120.0
+    volatility: 14.0
+  - symbol: INTC
+    name: Intel Corp.
+    price: 30.0
+    volatility: 6.0
+  - symbol: JPM
+    name: JPMorgan Chase & Co.
+    price: 180.0
+    volatility: 4.0
+  - symbol: V
+    name: Visa Inc.
+    price: 280.0
+    volatility: 5.5
+  - symbol: DIS
+    name: The Walt Disney Company
+    price: 100.0
+    volatility: 7.5
