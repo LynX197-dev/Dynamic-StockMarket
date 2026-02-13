@@ -1,3 +1,5 @@
+🌐 **WEBSITE:** https://lynx-development.lynx197.qzz.io/
+
 # Dynamic StockMarket
 Bring the thrill of the financial world into your Minecraft server! Dynamic StockMarket lets players invest, trade, and manage stocks in a fully dynamic, player-driven economy. Fully integrated with Dynamic EcoVault and Vault, this plugin connects seamlessly with your existing server economy.
 
