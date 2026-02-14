@@ -51,6 +51,12 @@ public class StocksCommand implements CommandExecutor, TabCompleter {
                return this.handlePortfolio(player);
             } else if (sub.equals("leaderboard")) {
                return this.handleLeaderboard(player);
+            } else if (sub.equals("taxinfo")) {
+               if (!player.hasPermission("dsm.taxinfo")) {
+                  player.sendMessage(ChatColor.RED + "You don't have permission.");
+                  return true;
+               }
+               return this.handleTaxInfo(player);
             } else {
                player.sendMessage("Invalid subcommand.");
                return true;
@@ -92,6 +98,8 @@ public class StocksCommand implements CommandExecutor, TabCompleter {
                } else {
                   EconomyResponse response = this.plugin.getEconomy().withdrawPlayer(player, totalCost);
                   if (response.transactionSuccess()) {
+                     String taxAccount = this.plugin.getConfig().getString("tax-account", "BankVault");
+                     this.plugin.getEconomy().depositPlayer(Bukkit.getOfflinePlayer(taxAccount), tax);
                      this.plugin.getDataManager().updateInvestment(player.getUniqueId(), symbol, amount,
                            stock.getPrice());
                      // Dynamic Volatility: Buying increases price slightly (Demand)
@@ -141,6 +149,8 @@ public class StocksCommand implements CommandExecutor, TabCompleter {
                double finalRevenue = revenue - tax;
                EconomyResponse response = this.plugin.getEconomy().depositPlayer(player, finalRevenue);
                if (response.transactionSuccess()) {
+                  String taxAccount = this.plugin.getConfig().getString("tax-account", "BankVault");
+                  this.plugin.getEconomy().depositPlayer(Bukkit.getOfflinePlayer(taxAccount), tax);
                   this.plugin.getDataManager().updateInvestment(player.getUniqueId(), symbol, -amount,
                         stock.getPrice());
                   // Dynamic Volatility: Selling decreases price slightly (Supply)
@@ -240,11 +250,27 @@ public class StocksCommand implements CommandExecutor, TabCompleter {
       return true;
    }
 
+   private boolean handleTaxInfo(Player player) {
+      String taxAccountName = this.plugin.getConfig().getString("tax-account", "BankVault");
+      OfflinePlayer taxAccount = Bukkit.getOfflinePlayer(taxAccountName);
+      double balance = this.plugin.getEconomy().getBalance(taxAccount);
+      double taxRate = this.plugin.getConfig().getDouble("tax-rate", 0.0D);
+
+      player.sendMessage(ChatColor.DARK_GREEN + "=== Tax Information ===");
+      player.sendMessage(ChatColor.GRAY + "Tax Account: " + ChatColor.WHITE + taxAccountName);
+      player.sendMessage(ChatColor.GRAY + "Tax Rate: " + ChatColor.WHITE + String.format("%.1f%%", taxRate * 100));
+      player.sendMessage(ChatColor.GRAY + "Total Collected: " + ChatColor.GREEN + "$" + String.format("%.2f", balance));
+      return true;
+   }
+
    public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
       List<String> completions = new ArrayList<>();
       if (args.length == 1) {
-         List<String> commands = Arrays.asList("buy", "sell", "info", "market", "portfolio", "leaderboard");
+         List<String> commands = Arrays.asList("buy", "sell", "info", "market", "portfolio", "leaderboard", "taxinfo");
          for (String s : commands) {
+            if (s.equals("taxinfo") && !sender.hasPermission("dsm.taxinfo")) {
+               continue;
+            }
             if (s.startsWith(args[0].toLowerCase())) {
                completions.add(s);
             }

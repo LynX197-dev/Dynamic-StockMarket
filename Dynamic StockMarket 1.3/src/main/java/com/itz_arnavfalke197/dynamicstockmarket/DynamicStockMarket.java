@@ -36,7 +36,7 @@ public class DynamicStockMarket extends JavaPlugin {
          this.dividendTask = new DividendTask(this);
          long divInterval = this.getConfig().getLong("dividend-interval", 3600L) * 20L;
          this.dividendTask.runTaskTimer(this, divInterval, divInterval);
-         this.getLogger().info("Dynamic StockMarket v1.2 enabled!");
+         this.getLogger().info("Dynamic StockMarket v1.3 enabled!");
          // ASCII
          Bukkit.getConsoleSender().sendMessage(AsciiBanner.DESIGN_CREDIT);
       }

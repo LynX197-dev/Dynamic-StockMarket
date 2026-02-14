@@ -1,12 +1,13 @@
-price-update-interval: 300 #300 seconds = 5 minutes
-tax-rate: 0.05
-event-chance: 0.05
-dividend-interval: 3600 #3600 seconds = 1 hour
-dividend-yield: 0.05
+price-update-interval: 300 #300 seconds = 5 minutes between stock price updates
+tax-rate: 0.05 #0.05 = 5% tax on profits from selling stocks
+tax-account: "BankVault" # The account where collected taxes are deposited
+event-chance: 0.05 #0.05 = 5% chance of a market event occurring every price update
+dividend-interval: 3600 #3600 seconds = 1 hour between dividend payouts
+dividend-yield: 0.05 #0.05 = 5% dividend yield on stocks that pay dividends
 market-events:
   bull-run:
-    message: "&a&lMARKET EVENT: &eBull Market! All stocks are rising!"
-    multiplier: 1.5
+    message: "&a&lMARKET EVENT: &eBull Market! All stocks are rising!" 
+    multiplier: 1.5 
   market-crash:
     message: "&c&lMARKET EVENT: &4Market Crash! Prices are plummeting!"
     multiplier: 0.7
